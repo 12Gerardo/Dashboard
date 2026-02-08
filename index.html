@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Administración - ShopMaster</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Panel de Administración - Productos</h1>
+
+      <div class="controles">
+        <div class="busqueda">
+          <input
+            type="text"
+            id="inputBusqueda"
+            placeholder="Buscar productos..."
+          />
+          <button onclick="buscarProductos()">Buscar</button>
+        </div>
+
+        <div class="filtros">
+          <label>Categoría:</label>
+          <select id="selectCategoria" onchange="filtrarPorCategoria()">
+            <option value="">Todas</option>
+          </select>
+        </div>
+
+        <div class="ordenar">
+          <label>Ordenar:</label>
+          <select id="selectOrdenar" onchange="ordenarProductos()">
+            <option value="">Sin orden</option>
+            <option value="title-asc">Título A-Z</option>
+            <option value="title-desc">Título Z-A</option>
+            <option value="price-asc">Precio menor</option>
+            <option value="price-desc">Precio mayor</option>
+          </select>
+        </div>
+
+        <button class="btn-nuevo" onclick="abrirModalNuevo()">
+          + Nuevo Producto
+        </button>
+      </div>
+
+      <div id="contenedorTabla">
+        <div class="loading">Cargando productos...</div>
+      </div>
+
+      <div class="paginacion">
+        <button id="btnAnterior" onclick="paginaAnterior()">Anterior</button>
+        <span id="infoPagina">Página 1</span>
+        <button id="btnSiguiente" onclick="paginaSiguiente()">Siguiente</button>
+      </div>
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <h2 id="tituloModal">Nuevo Producto</h2>
+        <form id="formProducto">
+          <div class="form-group">
+            <label>Título:</label>
+            <input type="text" id="inputTitulo" required />
+          </div>
+          <div class="form-group">
+            <label>Precio:</label>
+            <input type="number" id="inputPrecio" step="0.01" required />
+          </div>
+          <div class="modal-buttons">
+            <button type="submit">Guardar</button>
+            <button type="button" class="btn-cancelar" onclick="cerrarModal()">
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
